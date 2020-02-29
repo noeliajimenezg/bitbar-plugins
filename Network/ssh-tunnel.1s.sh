@@ -26,10 +26,13 @@ function hosts() {
     awk '
         $1 == "Host" {
             host = $2;
+            print host;
             next;
         }
         $1 == "DynamicForward" || $1 == "LocalForward" {
+            host = $2;
             print host;
+            next;
         }
     ' "$1"
 }
